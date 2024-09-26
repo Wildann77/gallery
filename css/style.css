@@ -1,0 +1,220 @@
+/* font */
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url(../fonts/BebasNeue.woff) format('woff'); 
+}
+
+/* Style utama */
+
+body {
+    font-weight: bold;
+    background-color: #000000;
+    font: 18px/36px 'BebasNeue','Arial Narrow', arial, san-serif;
+
+    
+}
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(to right, rgba(208, 12, 113, 0.222), rgba(230, 0, 255, 0.228));
+    color: rgba(255, 255, 255, 0.5);
+    /* font-size: 3em; */
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 20px; /* Memberikan sedikit padding agar konten tidak terlalu dekat dengan tepi */
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0); /* Latar belakang semi-transparan */
+    padding: 30px;
+    /* box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3); */
+    /* border-radius: 5px; */
+    z-index: 1; /* Pastikan container di atas video */
+    max-width: 605px; /* Atur lebar maksimum agar tidak terlalu lebar */
+    margin: 0 auto; /* Pusatkan container */
+}
+
+h1 {
+    font-size: 80px;
+    margin-bottom: 50px;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(235, 235, 235, 0.607);
+    color: #d00aa9; /* Ubah warna teks agar lebih mudah dibaca di atas latar belakang putih */
+}
+
+
+.gallery li {
+    width: 120px;
+    height: 120px;
+
+    /* overflow: hidden; */
+    border: 3px solid #666;
+    float: left;
+    margin-right: 25px;
+    position: relative;
+
+}
+
+.gallery li, .gallery img, .gallery span {
+    border-radius: 50%;
+}
+
+.gallery li span {
+    display: block;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(200,200,200,0.3);
+    position: absolute;
+    top: 0;
+    text-align: center;
+    line-height: 120px;
+    color: #333;
+    text-shadow: 1px 1px 1px #ddd;
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.3s;
+  
+
+}
+
+.gallery li a:hover span{
+    opacity: 1;
+    transform: scale(1)rotate(0deg);
+}
+.clear {
+    clear: both;
+}
+
+
+/* overlay */
+
+.overlay {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0);
+    z-index: 9999;
+    transition: .6s;
+    padding: 50px 0;
+}
+
+.overlay:target{
+    width: auto;
+    height: auto;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.7);
+    text-align: center;
+    
+}
+
+.overlay img {
+    max-height: 100%;
+    border-radius: 0; /* Menghapus border-radius agar gambar berbentuk kotak */
+    box-shadow: 2px 2px 70px rgba(0,0,0,0.5);
+}
+
+.overlay:target img {
+    animation: fade 0.5s ;
+}
+
+.overlay .close {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    margin-left: -20px;
+    color: white;
+    text-decoration: none;
+    background-color: black;
+    border: 1px solid white;
+    padding: 4px;
+    line-height:10px;
+    /* opacity: 0; */
+    opacity: 0;
+
+}
+
+.overlay:target .close {
+    animation: slideDown 0.4s 0.4s forwards;
+    
+}
+
+
+.next,.prev {
+    width:57px ;
+    height:93px ;
+    background-image: url(../img/Right.png);
+    position: absolute;
+    text-indent: -99999px;
+    top: 40%;
+    margin-left: 40px;
+    opacity: 0;
+}
+
+.prev {
+    background-image: url(../img/Left.png);
+    margin-left: -100px;
+    
+}
+
+.overlay:target .next {
+    animation: fade 0.5s 0.5s forwards;
+}
+.overlay:target .prev {
+    animation: fade 0.5s 0.5s forwards;
+}
+/* animasi */
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes zoomFade {
+    0% {
+        scale: 0;
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes  slideDown {
+    0% {
+        opacity: 0;
+        margin-top: -10px;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
